@@ -1,0 +1,12 @@
+/* Мінімальне оформлення: у ЛР1 CSS не вивчається, лише читабельність */
+body {
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  color: #1c1f24;
+  background: #fafaf8;
+}
+img { max-width: 100%; height: auto; }
+nav a { margin-right: 12px; }

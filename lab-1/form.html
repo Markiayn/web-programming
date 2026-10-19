@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Запропонувати місто — Мої 3 найкращі міста світу</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <p><a href="index.html">Мої 3 найкращі міста світу</a></p>
+    <nav aria-label="Основна навігація">
+      <a href="index.html">Головна</a>
+      <a href="city-madrid.html">Мадрид</a>
+      <a href="city-monaco.html">Монако</a>
+      <a href="city-los-angeles.html">Лос-Анджелес</a>
+      <a href="form.html">Запропонувати місто</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Запропонувати місто для наступного рейтингу</h1>
+    <p>Поля, позначені *, обов'язкові.</p>
+
+    <form action="#" method="post">
+      <p>
+        <label for="name">Ваше ім'я *</label><br>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </p>
+      <p>
+        <label for="email">Email *</label><br>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </p>
+      <p>
+        <label for="city">Назва міста *</label><br>
+        <input type="text" id="city" name="city" required>
+      </p>
+      <p>
+        <label for="country">Країна</label><br>
+        <input type="text" id="country" name="country">
+      </p>
+      <p>
+        <label for="category">Чим цікаве місто *</label><br>
+        <select id="category" name="category" required>
+          <option value="">— оберіть —</option>
+          <option value="sport">Спорт і стадіони</option>
+          <option value="history">Історія та архітектура</option>
+          <option value="nature">Природа й море</option>
+          <option value="food">Кухня</option>
+          <option value="other">Інше</option>
+        </select>
+      </p>
+      <fieldset>
+        <legend>Чи бували ви в цьому місті? *</legend>
+        <input type="radio" id="visited-yes" name="visited" value="yes" required>
+        <label for="visited-yes">Так</label>
+        <input type="radio" id="visited-no" name="visited" value="no">
+        <label for="visited-no">Ні, але мрію</label>
+      </fieldset>
+      <p>
+        <label for="visit-date">Коли плануєте поїздку</label><br>
+        <input type="month" id="visit-date" name="visit-date">
+      </p>
+      <p>
+        <label for="reason">Чому варто відвідати це місто? *</label><br>
+        <textarea id="reason" name="reason" rows="5" cols="50" required></textarea>
+      </p>
+      <p>
+        <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+        <label for="subscribe">Повідомити мене, коли вийде новий рейтинг</label>
+      </p>
+      <p>
+        <button type="submit">Надіслати пропозицію</button>
+        <button type="reset">Очистити</button>
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p>Автор: Маркіян Кобилецький, студент групи КН-42, 2026.</p>
+  </footer>
+</body>
+</html>
