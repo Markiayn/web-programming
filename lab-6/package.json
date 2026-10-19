@@ -1,0 +1,13 @@
+{
+  "name": "acoustic-watch-lab-6",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Акустична варта — адаптивна верстка (SCSS, Flexbox, Grid)",
+  "scripts": {
+    "sass": "sass --watch scss/main.scss:css/main.css",
+    "build": "sass --no-source-map scss/main.scss:css/main.css"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}
