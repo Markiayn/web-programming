@@ -1,0 +1,7 @@
+// Точка входу: компілюється в css/main.css
+@use "variables";
+@use "mixins";
+@use "base";
+@use "layout";
+@use "components";
+@use "sensors";

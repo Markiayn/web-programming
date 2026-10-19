@@ -1,0 +1,84 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+// ---------- Картка датчика: клас за статусом normal / warning / critical ----------
+.sensor-card {
+  @include m.card-surface;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  padding: v.$space-md v.$space-lg v.$space-lg;
+  transition: border-color v.$transition;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space-sm;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  &__status {
+    padding: 2px v.$space-sm;
+    border-radius: v.$radius-sm;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  &__level {
+    margin-block: v.$space-xs;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  p {
+    color: v.$color-muted;
+  }
+
+  &__meta {
+    font-size: 0.875rem;
+  }
+
+  &.normal {
+    .sensor-card__status { background: v.$color-primary-soft; color: v.$color-success; }
+    .sensor-card__level { color: v.$color-success; }
+  }
+
+  &.warning {
+    border-color: v.$color-warning-border;
+    .sensor-card__status { background: v.$color-warning-soft; color: v.$color-warning; }
+    .sensor-card__level { color: v.$color-warning; }
+  }
+
+  &.critical {
+    border-color: v.$color-danger-border;
+    .sensor-card__status { background: v.$color-danger-soft; color: v.$color-danger; }
+    .sensor-card__level { color: v.$color-danger; }
+  }
+}
+
+// ---------- Другорядна кнопка ----------
+.button--secondary {
+  background: v.$color-white;
+  color: v.$color-primary;
+
+  &:hover {
+    background: v.$color-primary-soft;
+    border-color: v.$color-primary;
+  }
+
+  &:active {
+    background: v.$color-primary-soft;
+  }
+}
+
+.sensor-actions__log {
+  color: v.$color-muted;
+  font-variant-numeric: tabular-nums;
+}

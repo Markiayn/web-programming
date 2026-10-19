@@ -1,0 +1,39 @@
+@use "variables" as v;
+
+// Media query «від ширини» (Mobile First)
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Центрування вмісту
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Обмежений по ширині контейнер з полями
+@mixin container {
+  width: min(100% - 2 * v.$space-md, v.$container-max);
+  margin-inline: auto;
+}
+
+// Колонка → рядок з певного breakpoint
+@mixin stack-to-row($breakpoint, $gap: v.$space-md) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+
+  @include respond-to($breakpoint) {
+    flex-direction: row;
+  }
+}
+
+// Спільний вигляд картки
+@mixin card-surface {
+  background: v.$color-white;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+}

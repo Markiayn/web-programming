@@ -1,0 +1,319 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+// ---------- Логотип і декоративний «датчик» ----------
+.logo {
+  display: flex;
+  align-items: center;
+  gap: v.$space-md;
+
+  &__wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 40px;
+
+    span {
+      width: 4px;
+      height: 40px;
+      border-radius: 2px;
+      background: v.$color-primary;
+      transition: transform 200ms ease-out;
+    }
+
+    span:nth-child(1),
+    span:nth-child(5) { transform: scaleY(0.4); }
+    span:nth-child(2),
+    span:nth-child(4) { transform: scaleY(0.7); }
+  }
+
+  &:hover &__wave span:nth-child(1),
+  &:hover &__wave span:nth-child(5) { transform: scaleY(0.8); }
+  &:hover &__wave span:nth-child(3) { transform: scaleY(0.6); }
+
+  &__name {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: v.$color-text;
+    text-decoration: none;
+  }
+
+  &__slogan {
+    display: block;
+    font-size: 0.875rem;
+    color: v.$color-muted;
+  }
+}
+
+// ---------- Навігація ----------
+.nav__link {
+  padding: v.$space-sm v.$space-xs;
+  border-bottom: 2px solid transparent;
+  color: v.$color-text;
+  text-decoration: none;
+  transition: color v.$transition, border-color v.$transition;
+
+  &:hover {
+    color: v.$color-primary;
+  }
+
+  &--active {
+    font-weight: 600;
+    color: v.$color-primary;
+    border-bottom-color: v.$color-primary;
+  }
+}
+
+// ---------- Hero ----------
+.hero {
+  h1 {
+    font-size: clamp(1.8rem, 5vw, 2.75rem);
+    margin-bottom: v.$space-md;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: v.$color-text-soft;
+    margin-bottom: v.$space-lg;
+  }
+}
+
+// ---------- Кнопка ----------
+.button {
+  display: inline-block;
+  padding: 12px v.$space-lg;
+  border: 1px solid v.$color-primary;
+  border-radius: v.$radius;
+  background: v.$color-primary;
+  color: v.$color-white;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color v.$transition, border-color v.$transition;
+
+  &:hover {
+    background: v.$color-primary-dark;
+    border-color: v.$color-primary-dark;
+  }
+
+  &:active {
+    background: v.$color-primary-darker;
+  }
+}
+
+// ---------- Картки моніторингу (Flexbox усередині) ----------
+.stat-card {
+  @include m.card-surface;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  padding: v.$space-md v.$space-lg;
+
+  &__label,
+  &__note {
+    font-size: 0.875rem;
+    color: v.$color-muted;
+  }
+
+  &__value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px v.$space-sm;
+  border-radius: v.$radius-sm;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  &--ok {
+    background: v.$color-primary-soft;
+    color: v.$color-success;
+  }
+}
+
+// ---------- Картки напрямів ----------
+.card {
+  @include m.card-surface;
+  display: flex;
+  flex-direction: column;
+  padding: v.$space-lg;
+  transition: border-color v.$transition, transform v.$transition;
+
+  &:hover {
+    border-color: v.$color-primary;
+    transform: translateY(-2px);
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: v.$color-muted;
+  }
+}
+
+// ---------- Попередження (клас .alert, щоб не конфліктувати зі статусом сенсора .warning) ----------
+.alert {
+  position: relative;
+  width: 100%;
+  margin-top: v.$space-lg;
+  padding: v.$space-lg;
+  border: 1px solid v.$color-danger-border;
+  border-radius: v.$radius;
+  background: v.$color-danger-soft;
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 0 0 v.$space-sm;
+    color: v.$color-danger;
+  }
+
+  p {
+    color: v.$color-danger-dark;
+    max-width: 75ch;
+  }
+
+  &__badge {
+    position: absolute;
+    top: v.$space-md;
+    right: v.$space-md;
+    padding: v.$space-xs v.$space-sm;
+    border-radius: v.$radius-sm;
+    background: v.$color-danger;
+    color: v.$color-white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+// ---------- Таблиця: прокрутка всередині обгортки ----------
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  background: v.$color-white;
+}
+
+.table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    padding: v.$space-sm v.$space-md;
+    border-bottom: 1px solid v.$color-border;
+    text-align: left;
+  }
+
+  th {
+    background: v.$color-table-head;
+    font-weight: 600;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+.level--high,
+.status--high {
+  color: v.$color-danger;
+  font-weight: 600;
+}
+
+.status--ok {
+  color: v.$color-success;
+}
+
+// ---------- Форма: 1 колонка → 2 колонки → поля + опис (Grid) ----------
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @include m.respond-to(v.$bp-desktop) {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+
+  &__fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: v.$space-md;
+
+    @include m.respond-to(v.$bp-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-xs;
+  }
+
+  &__label {
+    font-size: 0.9375rem;
+  }
+
+  &__actions {
+    grid-column: 1 / -1;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    padding: v.$space-sm 12px;
+    border: 1px solid v.$color-border-input;
+    border-radius: v.$radius;
+    background: v.$color-white;
+    transition: border-color v.$transition;
+
+    &:focus {
+      border-color: v.$color-primary;
+      outline: 2px solid v.$color-primary-soft;
+    }
+  }
+
+  textarea {
+    min-height: 128px;
+    resize: vertical;
+  }
+}
+
+.required {
+  color: v.$color-danger;
+}
+
+// ---------- Footer ----------
+.site-footer {
+  p {
+    margin-bottom: v.$space-xs;
+  }
+
+  a {
+    color: v.$color-white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: v.$color-white;
+  }
+}
