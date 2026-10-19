@@ -1,0 +1,153 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+// ---------- Картка датчика: клас за статусом normal / warning / critical ----------
+.sensor-card {
+  @include m.card-surface;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+  padding: v.$space-md v.$space-lg v.$space-lg;
+  transition: border-color v.$transition;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space-sm;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  &__status {
+    padding: 2px v.$space-sm;
+    border-radius: v.$radius-sm;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  &__level {
+    margin-block: v.$space-xs;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  p {
+    color: v.$color-muted;
+  }
+
+  &__meta {
+    font-size: 0.875rem;
+  }
+
+  &--normal {
+    .sensor-card__level { color: v.$color-success; }
+  }
+
+  &--warning {
+    border-color: v.$color-warning-border;
+    .sensor-card__level { color: v.$color-warning; }
+  }
+
+  &--critical {
+    border-color: v.$color-danger-border;
+    .sensor-card__level { color: v.$color-danger; }
+  }
+}
+
+// ---------- ЛР7: статус active / inactive з API ----------
+.sensor-card {
+  &__status {
+    background: v.$color-primary-soft;
+    color: v.$color-success;
+  }
+
+  &--inactive {
+    background: v.$color-surface;
+
+    .sensor-card__status {
+      background: v.$color-border;
+      color: v.$color-muted;
+    }
+  }
+}
+
+// ---------- Фільтри ----------
+.sensor-filters {
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-xs;
+    min-width: 240px;
+  }
+
+  select {
+    min-height: 44px;
+    padding: v.$space-sm 12px;
+    border: 1px solid v.$color-border-input;
+    border-radius: v.$radius;
+    background: v.$color-white;
+
+    &:focus-visible {
+      border-color: v.$color-primary;
+      outline: 2px solid v.$color-primary-soft;
+    }
+  }
+
+  &__check {
+    display: flex;
+    align-items: center;
+    gap: v.$space-sm;
+    min-height: 44px;
+    cursor: pointer;
+
+    input {
+      width: 18px;
+      height: 18px;
+      accent-color: v.$color-primary;
+    }
+  }
+
+  &__count {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    color: v.$color-muted;
+
+    @include m.respond-to(v.$bp-tablet) {
+      margin-left: auto;
+    }
+  }
+}
+
+// ---------- Стан завантаження / помилка / порожньо ----------
+.sensors__state {
+  padding: v.$space-md v.$space-lg;
+  margin-bottom: v.$space-md;
+  border: 1px dashed v.$color-border-input;
+  border-radius: v.$radius;
+  color: v.$color-muted;
+
+  &--error {
+    border-style: solid;
+    border-color: v.$color-danger-border;
+    background: v.$color-danger-soft;
+    color: v.$color-danger-dark;
+  }
+}
+
+.sensors__source {
+  margin-top: v.$space-md;
+  font-size: 0.875rem;
+  color: v.$color-muted;
+
+  code {
+    font-family: Consolas, monospace;
+    color: v.$color-text;
+  }
+}
